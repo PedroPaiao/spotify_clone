@@ -21,12 +21,46 @@ class IndicationsSection extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 400,
-            child: ListView.builder(
-              itemCount: 2,
+            height: 260,
+            child: GridView.builder(
+              itemCount: 6,
+              shrinkWrap: false,
+              padding: const EdgeInsets.only(top: 28),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 24 / 9,
+              ),
               itemBuilder: (context, index) {
                 return Card(
-                  child: Text(index.toString()),
+                  color: const Color.fromRGBO(40, 40, 40, 1),
+                  child: Row(
+                    children: const [
+                      Expanded(
+                        child: SizedBox(
+                          height: 200,
+                          child: FittedBox(
+                            alignment: Alignment.centerLeft,
+                            fit: BoxFit.fitHeight, // otherwise the logo will be tiny
+                            child: Image(
+                              image: AssetImage('assets/images/card_image.png'),
+                              alignment: Alignment.centerLeft,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 110,
+                        child: Text(
+                          "Como Estrellas Radio",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 );
               },
             ),

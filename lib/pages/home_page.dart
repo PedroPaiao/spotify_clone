@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/widgets/indications_section.dart';
+import 'package:spotify_clone/widgets/see_again_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,20 +31,27 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: const [
-              Padding(padding: EdgeInsets.only(top: 30)),
-              IndicationsSection()
-            ],
+          SingleChildScrollView(
+            child: Column(
+              children: const [
+                Padding(padding: EdgeInsets.only(top: 68)),
+                IndicationsSection(),
+                Padding(padding: EdgeInsets.only(top: 20)),
+                SeeAgainSection(),
+              ],
+            ),
           )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color.fromRGBO(40, 40, 40, 1),
+        fixedColor: const Color.fromRGBO(179, 179, 179, 1),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Inicio',
+            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
