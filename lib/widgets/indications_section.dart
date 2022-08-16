@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:spotify_clone/models/section_item.dart';
+import 'package:spotify_clone/view_models/buenas_notches_view_model.dart';
 
 class IndicationsSection extends StatelessWidget {
   const IndicationsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<SectionItem> list = Provider.of<BuenasNotchesViewModel>(context).list;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -23,7 +28,7 @@ class IndicationsSection extends StatelessWidget {
           SizedBox(
             height: 260,
             child: GridView.builder(
-              itemCount: 6,
+              itemCount: list.length,
               shrinkWrap: false,
               padding: const EdgeInsets.only(top: 28),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,15 +39,16 @@ class IndicationsSection extends StatelessWidget {
                 return Card(
                   color: const Color.fromRGBO(40, 40, 40, 1),
                   child: Row(
-                    children: const [
+                    children: [
                       Expanded(
                         child: SizedBox(
                           height: 200,
                           child: FittedBox(
                             alignment: Alignment.centerLeft,
-                            fit: BoxFit.fitHeight, // otherwise the logo will be tiny
+                            fit: BoxFit
+                                .fitHeight, // otherwise the logo will be tiny
                             child: Image(
-                              image: AssetImage('assets/images/card_image.png'),
+                              image: AssetImage(list[index].image),
                               alignment: Alignment.centerLeft,
                             ),
                           ),
@@ -51,8 +57,8 @@ class IndicationsSection extends StatelessWidget {
                       SizedBox(
                         width: 110,
                         child: Text(
-                          "Como Estrellas Radio",
-                          style: TextStyle(
+                          list[index].title,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:spotify_clone/models/section_item.dart';
+import 'package:spotify_clone/view_models/buenas_notches_view_model.dart';
 
 class SeeAgainSection extends StatelessWidget {
   const SeeAgainSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<SectionItem> list = Provider.of<BuenasNotchesViewModel>(context).list;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -26,10 +31,10 @@ class SeeAgainSection extends StatelessWidget {
           SizedBox(
             height: 400,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: list.length,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, _) {
+              itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 6),
                   child: Column(
@@ -38,8 +43,9 @@ class SeeAgainSection extends StatelessWidget {
                       Card(
                         margin: EdgeInsets.zero,
                         child: Image.asset(
-                          'assets/images/aquele_card.png',
+                          list[index].image,
                           fit: BoxFit.fill,
+                          height: 142,
                         ),
                       ),
                       const Padding(
@@ -47,10 +53,10 @@ class SeeAgainSection extends StatelessWidget {
                           top: 4,
                         ),
                       ),
-                      const Text(
-                        'El Cuarteto de Ibai',
+                      Text(
+                        list[index].title,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
